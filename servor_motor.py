@@ -27,3 +27,9 @@ while True:
         direction = -1
     elif index == 0:
         direction = 1
+
+# Stop the PWM instance
+pwm.stop()
+
+# Clean up the GPIO pins
+GPIO.cleanup()
