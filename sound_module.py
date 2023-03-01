@@ -1,23 +1,31 @@
 import spidev
 import time
 
-# Open SPI bus
+# Set the SPI bus and device
+SPI_BUS = 0
+SPI_DEV = 0
+
+# Set the photoresistor channel on the MCP3008
+PHOTO_RESISTOR_CHANNEL = 0
+
+# Create an instance of the SPI object
 spi = spidev.SpiDev()
-spi.open(0, 0)
+spi.open(SPI_BUS, SPI_DEV)
 
-# Function to read analog value from ADC
-def read_adc(adc_channel):
-    adc = spi.xfer2([1, (8 + adc_channel) << 4, 0])
-    data = ((adc[1] & 3) << 8) + adc[2]
-    return data
+# Define a function to read the photoresistor value from the MCP3008
+def read_photoresistor():
+    # Send the read command for the photoresistor channel
+    # The first byte is 0b00000001 (start bit, single-ended mode, channel 0)
+    # The second byte is 0b10000000 (null bit, null bit, null bit, null bit, MSB first)
+    resp = spi.xfer2([0b00000001, 0b10000000, 0])
+    
+    # Combine the two bytes of the response into a single value
+    photoresistor_value = (resp[1] << 8) + resp[2]
+    
+    return photoresistor_value
 
-# Main loop
+# Loop to read the photoresistor value
 while True:
-    # Read analog value from photoresistor on channel 0
-    photo_value = read_adc(0)
-    
-    # Print the analog value to console
-    print("Photoresistor value:", photo_value)
-    
-    # Delay for a short period of time
+    photoresistor_value = read_photoresistor()
+    print("Photoresistor value:", photoresistor_value)
     time.sleep(0.1)
