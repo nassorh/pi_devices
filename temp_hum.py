@@ -1,7 +1,7 @@
 import Adafruit_DHT
 
 # Set the sensor type and GPIO pin number
-SENSOR_TYPE = Adafruit_DHT.DHT22
+SENSOR_TYPE = Adafruit_DHT.DHT11
 GPIO_PIN = 13
 
 # Loop to read the temperature and humidity values
