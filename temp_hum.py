@@ -16,6 +16,7 @@ def convert_temp(data):
 try:
     while True:
         temp_data = read_adc(0)
+        print("raw",temp_data)
         temp = convert_temp(temp_data)
         print("Temperature: {}C".format(temp))
         time.sleep(1)
