@@ -18,6 +18,7 @@ while True:
         if(val == 1): #Loosen the button
             count = count + 1 #Count the number of clicks on the
             print("count = %d" %count)
+            
     flag = count % 2 #Remainder 2 ,Even is 0, odd is 1
     if(flag == 1):
         print("Button On")
