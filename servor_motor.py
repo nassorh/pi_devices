@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 def spin(angle):
+    print("Spinning",angle)
     duty_cycle = 2.5 + (angle / 36) # Calculate the duty cycle based on the angle
     pwm.ChangeDutyCycle(duty_cycle)
 
