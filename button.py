@@ -21,7 +21,5 @@ while True:
     flag = count % 2 #Remainder 2 ,Even is 0, odd is 1
     if(flag == 1):
         print("Button On")
-    else:
-        print("Button Off")
 
 GPIO.cleanup() #release all GPIO
