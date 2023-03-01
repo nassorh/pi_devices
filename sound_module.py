@@ -17,5 +17,7 @@ while True:
     value = analogRead(0) ##read A0 data
     if(value>sensitivity):
         print("Sound detected")
+    else:
+        print("No sound")
     time.sleep(0.05)
 GPIO.cleanup()
