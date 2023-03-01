@@ -3,6 +3,8 @@ import time
 
 I2C_BUS = 1
 ADC_ADDR = 0x48
+cmd = 0x40 #DA Convertor
+
 bus = smbus.SMBus(I2C_BUS)
 
 flag = 0
