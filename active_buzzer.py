@@ -6,7 +6,7 @@ buzzer_pin = 26
 # Set the GPIO mode to BCM
 GPIO.setmode(GPIO.BCM)
 # Set up the PIR pin as an input
-GPIO.setup(buzzer_pin, GPIO.IN)
+GPIO.setup(buzzer_pin, GPIO.OUT)
 
 while True:
     GPIO.output(buzzer_pin,GPIO.HIGH)
