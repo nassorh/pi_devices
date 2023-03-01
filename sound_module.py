@@ -1,4 +1,5 @@
 import smbus
+import time
 
 # Set the I2C bus number (0 or 1)
 I2C_BUS = 1
