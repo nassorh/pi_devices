@@ -1,8 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-LED = 27 #set ledPin
-button = 18 #set buttonPin
+button = 26 #set buttonPin
 val = 0 #Button variables
 count = 0 #Record the number of button presses
 flag = 0 #Odd even variable
