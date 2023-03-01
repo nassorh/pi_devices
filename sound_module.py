@@ -10,7 +10,7 @@ mode = 0
 
 def analogRead(count):
     #function,read analog data
-    read_val = bus.read_byte_data(address,cmd + count)
+    read_val = bus.read_byte_data(ADC_ADDR,cmd + count)
     return read_val
 
 while True:
