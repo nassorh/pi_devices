@@ -12,12 +12,12 @@ GPIO.setup(SERVO_PIN, GPIO.OUT)
 pwm = GPIO.PWM(SERVO_PIN, 50) # Create a PWM instance with a frequency of 50 Hz
 pwm.start(2.5) # Move the servo to the 0 degree position
 
-values = [2.5, 7.5, 12.5] #2.5 = 0 deg, 7.5 = 90 deg, 12.5 = 180 deg
+degrees = [2.5, 7.5, 12.5] #2.5 = 0 deg, 7.5 = 90 deg, 12.5 = 180 deg
 index = 1
 while True:
-    value = values[index % len(values)]
+    degree = degrees[index % len(degrees)]
     index += 1
-    pwm.ChangeDutyCycle(7.5)
+    pwm.ChangeDutyCycle(degree)
     time.sleep(1)
 
 #stop the PWM instance
