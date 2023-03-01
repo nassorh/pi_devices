@@ -1,20 +1,30 @@
-import Adafruit_DHT
+import time
+import smbus2
 
-# Set the sensor type and GPIO pin number
-SENSOR_TYPE = Adafruit_DHT.DHT22
-GPIO_PIN = 26
+# Define the DHT11 sensor address and register values
+SENSOR_ADDR = 0x5c
+TEMP_REGISTER = 0x00
+HUMIDITY_REGISTER = 0x01
 
-# Loop to read the temperature and humidity values
+# Initialize the I2C bus
+bus = smbus2.SMBus(1)
+
+def read_sensor():
+    # Send start signal to the sensor
+    bus.write_byte(SENSOR_ADDR, 0x00)
+    time.sleep(0.1)
+
+    # Read 4 bytes of data from the sensor
+    data = bus.read_i2c_block_data(SENSOR_ADDR, 0, 4)
+
+    # Calculate temperature and humidity values
+    humidity = data[HUMIDITY_REGISTER]
+    temperature = data[TEMP_REGISTER]
+
+    return temperature, humidity
+
+# Read and print temperature and humidity data every second
 while True:
-    # Try to read the temperature and humidity values from the sensor
-    humidity, temperature = Adafruit_DHT.read_retry(SENSOR_TYPE, GPIO_PIN)
-
-    # Print the values if they were successfully read
-    if humidity is not None and temperature is not None:
-        print('Temperature: {0:.1f}°C'.format(temperature))
-        print('Humidity:    {0:.1f}%'.format(humidity))
-    else:
-        print('Failed to get reading. Try again!')
-
-    # Wait a few seconds before reading again
-    time.sleep(2)
+    temperature, humidity = read_sensor()
+    print(f"Temperature: {temperature}C, Humidity: {humidity}%")
+    time.sleep(1)
