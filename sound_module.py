@@ -17,7 +17,7 @@ while True:
     ##loop
     value = analogRead(0) ##read A0 data
     if(value>50):
-        flag + = 1
+        flag += 1
         mode = flag % 2
     print("data:%1.Of" %(value))
     time.sleep(0.05)
