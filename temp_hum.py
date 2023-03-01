@@ -1,4 +1,5 @@
 import Adafruit_DHT
+import time
 
 # Set the sensor type and GPIO pin number
 SENSOR_TYPE = Adafruit_DHT.DHT11
