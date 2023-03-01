@@ -2,7 +2,8 @@ import RPi.GPIO as GPIO
 import time
 
 def spin(angle):
-    pwm.ChangeDutyCycle(angle)
+    duty_cycle = 2.5 + (angle / 18.0) # Calculate the duty cycle based on the angle
+    pwm.ChangeDutyCycle(duty_cycle)
 
 SERVO_PIN = 18 # Define the GPIO pin for the servo signal
 
@@ -17,16 +18,15 @@ index = 0 # Start at the first value in the list
 direction = 1 # 1 for forward, -1 for backward
 
 while True:
-    degree = degrees[index]
-    spin(degree)
-    time.sleep(0.01)
-    index += direction
+    # Spin the servo motor through 0 to 180 degrees
+    for angle in range(0, 181, 10):
+        spin(angle)
+        time.sleep(0.5)
 
-    # Reverse direction when we reach the end of the list
-    if index == len(degrees) - 1:
-        direction = -1
-    elif index == 0:
-        direction = 1
+    # Spin the servo motor back through 180 to 0 degrees
+    for angle in range(180, -1, -10):
+        spin(angle)
+        time.sleep(0.5)
 
 # Stop the PWM instance
 pwm.stop()
