@@ -21,7 +21,7 @@ while True:
     if(value>50):
         flag += 1
         mode = flag % 2
-    print("data:%1.Of" %(value))
+    print("Value",value)
     time.sleep(0.05)
 GPIO.cleanup()
 
