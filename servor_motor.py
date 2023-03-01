@@ -18,7 +18,6 @@ while True:
     degree = degrees[index % len(degrees)]
     index += 1
     pwm.ChangeDutyCycle(degree)
-    time.sleep(1)
 
 #stop the PWM instance
 pwm.stop()
