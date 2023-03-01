@@ -1,25 +1,20 @@
-import spidev
-import time
+import Adafruit_DHT
 
-spi = spidev.SpiDev()
-spi.open(0, 0)
+# Set the sensor type and GPIO pin number
+SENSOR_TYPE = Adafruit_DHT.DHT22
+GPIO_PIN = 23
 
-def read_adc(channel):
-    adc = spi.xfer2([1, (8+channel)<<4, 0])
-    data = ((adc[1]&3) << 8) + adc[2]
-    return data
+# Loop to read the temperature and humidity values
+while True:
+    # Try to read the temperature and humidity values from the sensor
+    humidity, temperature = Adafruit_DHT.read_retry(SENSOR_TYPE, GPIO_PIN)
 
-def convert_temp(data):
-    temp = (data * 3.3 / 1024.0) * 100
-    return round(temp, 1)
+    # Print the values if they were successfully read
+    if humidity is not None and temperature is not None:
+        print('Temperature: {0:.1f}°C'.format(temperature))
+        print('Humidity:    {0:.1f}%'.format(humidity))
+    else:
+        print('Failed to get reading. Try again!')
 
-try:
-    while True:
-        temp_data = read_adc(0)
-        print("raw",temp_data)
-        temp = convert_temp(temp_data)
-        print("Temperature: {}C".format(temp))
-        time.sleep(1)
-
-except KeyboardInterrupt:
-    spi.close()
+    # Wait a few seconds before reading again
+    time.sleep(2)
