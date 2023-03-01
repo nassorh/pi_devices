@@ -23,6 +23,11 @@ while True:
     for angle in range(0, 361, 10):
         spin(angle)
         time.sleep(0.01)
+    
+    # Spin the servo motor through 360 to 0 degrees
+    for angle in range(180, -1, -10):
+        spin(angle)
+        time.sleep(0.01)
 
 # Stop the PWM instance
 pwm.stop()
