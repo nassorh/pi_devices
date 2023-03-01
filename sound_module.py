@@ -2,24 +2,21 @@ import RPi.GPIO as GPIO
 import smbus
 import time
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
+# Define the analog pin to which the photoresistor is connected
+ANALOG_PIN = A0
 
-led = 5
-GPIO.setup(led,GPIO.OUT)
+# Set up the ADC
 address = 0x48
 cmd = 0x40
-A0 = 0x40
-A1 = 0x41
-A2 = 0x42
-A3 = 0x43
 bus = smbus.SMBus(1)
 
-##start the bus
-def analogRead(count): #function, read analog data
-    read_val = bus.read_byte_data(address,cmd + count)
+# Define a function to read the analog value from the specified pin
+def analog_read(pin):
+    read_val = bus.read_byte_data(address, cmd + pin)
     return read_val
 
+# Loop to read the analog value from the photoresistor
 while True:
-    value = analogRead(0) ##read AO data
+    value = analog_read(ANALOG_PIN)
     print(value)
+    time.sleep(0.1)
