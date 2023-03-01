@@ -27,3 +27,4 @@ def read_adc(channel):
 while True:
     adc_value = read_adc(0)
     print("ADC value:", adc_value)
+    time.sleep(0.1)
