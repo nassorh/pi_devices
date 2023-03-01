@@ -10,7 +10,7 @@ GPIO.setup(buzzer_pin, GPIO.OUT)
 
 while True:
     GPIO.output(buzzer_pin,GPIO.HIGH)
-    time.sleep(0.1)
+    time.sleep(1)
     GPIO.output(buzzer_pin,GPIO.LOW)
 
 GPIO.cleanup()
