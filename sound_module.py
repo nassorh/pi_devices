@@ -1,20 +1,23 @@
-import smbus
+import spidev
 import time
 
-I2C_BUS = 1
-ADC_ADDR = 0x48
-cmd = 0x40 #DA Convertor
-bus = smbus.SMBus(I2C_BUS)
-sensitivity = 10
+# Open SPI bus
+spi = spidev.SpiDev()
+spi.open(0, 0)
 
-def analogRead(count):
-    #function,read analog data
-    read_val = bus.read_byte_data(ADC_ADDR,cmd + count)
-    return read_val
+# Function to read analog value from ADC
+def read_adc(adc_channel):
+    adc = spi.xfer2([1, (8 + adc_channel) << 4, 0])
+    data = ((adc[1] & 3) << 8) + adc[2]
+    return data
 
+# Main loop
 while True:
-    ##loop
-    value = analogRead(0) ##read A0 data
-    print(value)
-    time.sleep(0.05)
-GPIO.cleanup()
+    # Read analog value from photoresistor on channel 0
+    photo_value = read_adc(0)
+    
+    # Print the analog value to console
+    print("Photoresistor value:", photo_value)
+    
+    # Delay for a short period of time
+    time.sleep(0.1)
