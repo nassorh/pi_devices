@@ -63,6 +63,7 @@ def temp_hum_page():
 @app.route('/get_temp_hum')
 def get_live_temp_hum():
     temperature, humidity = dht11_sensor.get_values()
+    print(temperature, humidity)
     return jsonify({'temperature': temperature, 'humidity': humidity})
 
 if __name__ == '__main__':
