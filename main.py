@@ -44,7 +44,7 @@ def get_pir_state():
 
 @app.route('/servo')
 def servo_page():
-    return render_template('servo.html')
+    return render_template('servo.html',servo_on=servo_motor.is_turned_on)
 
 # Define the endpoint for turning on the servo motor
 @app.route("/servo_on", methods=["POST"])
