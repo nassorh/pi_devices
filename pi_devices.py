@@ -81,24 +81,25 @@ class ServoMotor(PiDevices):
         self.pwm.ChangeDutyCycle(duty_cycle)
 
     def spin_forever_thread(self):
-        while self.is_turned_on:
-            print("Spinning")
-            for angle in range(0, 361, self.smoothness):
-                self.spin_(angle)
-                time.sleep(self.speed)
+        while True:
+            if self.is_turned_on:
+                print("Spinning")
+                for angle in range(0, 361, self.smoothness):
+                    self.spin_(angle)
+                    time.sleep(self.speed)
 
-            for angle in range(361, -1, self.smoothness*-1):
-                self.spin_(angle)
+                for angle in range(361, -1, self.smoothness*-1):
+                    self.spin_(angle)
+                    time.sleep(self.speed)
+            else:
                 time.sleep(self.speed)
 
     def turn_on(self):
         self.is_turned_on = True
-        self.thread.join() 
 
     def turn_off(self):
         self.pwm.ChangeDutyCycle(2.5) # Move the motor to the 0 degree position
         self.is_turned_on = False
-        self.thread.join() 
 
     def cleanup(self):
         self.pwm.stop() 
