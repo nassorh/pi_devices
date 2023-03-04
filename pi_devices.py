@@ -72,22 +72,28 @@ class ServoMotor(PiDevices):
         self.pwm = GPIO.PWM(servo_pin, 50) # Create a PWM instance with a frequency of 50 Hz
         self.pwm.start(2.5) # Move the servo to the 0 degree position
         self.is_turned_on = False # initialize the state of the motor
+        self.thread = threading.Thread(target=self.spin_forever_thread)
+        self.thread.daemon = True
+        self.thread.start()
 
     def spin_(self, angle):
         duty_cycle = 2.5 + (angle / 36) # Calculate the duty cycle based on the angle
         self.pwm.ChangeDutyCycle(duty_cycle)
 
-    def spin(self):
-        for angle in range(0, 361, self.smoothness):
-            self.spin_(angle)
-            time.sleep(self.speed)
+    def spin_forever_thread(self):
+        while True:
+            if self.is_turned_on:
+                for angle in range(0, 361, self.smoothness):
+                    self.spin_(angle)
+                    time.sleep(self.speed)
 
-        for angle in range(361, -1, self.smoothness*-1):
-            self.spin_(angle)
-            time.sleep(self.speed)
-    
+                for angle in range(361, -1, self.smoothness*-1):
+                    self.spin_(angle)
+                    time.sleep(self.speed)
+            else:
+                time.sleep(0.1)
+
     def turn_on(self):
-        self.spin()
         self.is_turned_on = True
 
     def turn_off(self):

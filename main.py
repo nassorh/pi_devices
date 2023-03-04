@@ -31,7 +31,7 @@ def buzzer_page():
 @app.route('/sound_buzzer')
 def sound_buzzer():
     buzzer.sound_alarm(5) 
-    return 'Buzzer sounded for {} seconds!'.format(duration)
+    return 'Buzzer sounded'
 
 @app.route('/pir')
 def pir_page():
