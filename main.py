@@ -21,7 +21,7 @@ def button_page():
 
 @app.route('/get_button_state')
 def get_button_state():
-    button_state = 'Pressed' if button.check_button() else 'Not pressed'
+    button_state = 'On' if button.check_button() else 'Off'
     return button_state
 
 @app.route('/buzzer')

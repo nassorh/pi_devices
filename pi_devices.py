@@ -112,7 +112,3 @@ class Temp_Hum(PiDevices):
 
     def get_values(self):
         return self.temperature, self.humidity
-
-# # Example usage
-# device = {"button":Button(23),"buzzer":Buzzer(26),"pir_sensor":PIRSensor(13),"servo_motor":ServoMotor(18),"temp_hum":Temp_Hum(13)}
-# device["button"].check_button()
