@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 import time
 import Adafruit_DHT
+import threading 
 
 class PiDevices:
     def __init__(self, pin):
