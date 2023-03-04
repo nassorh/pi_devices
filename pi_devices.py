@@ -93,11 +93,12 @@ class ServoMotor(PiDevices):
 
     def turn_on(self):
         self.is_turned_on = True
+        self.thread.join() 
 
     def turn_off(self):
         self.pwm.ChangeDutyCycle(2.5) # Move the motor to the 0 degree position
         self.is_turned_on = False
-        self.thread.join()  # Stop the thread from running the loop
+        self.thread.join() 
 
     def cleanup(self):
         self.pwm.stop() 
