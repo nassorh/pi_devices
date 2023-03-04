@@ -21,7 +21,6 @@ def button_page():
 
 @app.route('/get_button_state')
 def get_button_state():
-    print(button.check_button())
     button_state = 'On' if button.check_button() else 'Off'
     return button_state
 
