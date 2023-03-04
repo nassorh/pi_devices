@@ -46,14 +46,21 @@ def get_pir_state():
 def servo_page():
     return render_template('servo.html')
 
-@app.route('/toggle_servo')
-def toggle_servo():
-    if servo_motor.check_on():
-        servo_motor.off()
-        return 'Servo motor turned off!'
-    else:
-        servo_motor.on()
-        return 'Servo motor turned on!'
+# Define the endpoint for turning on the servo motor
+@app.route("/servo_on", methods=["POST"])
+def servo_on():
+    # Start the servo motor
+    servo_motor.turn_on()
+    # Redirect to the main page
+    return "spinning"
+
+# Define the endpoint for turning off the servo motor
+@app.route("/servo_off", methods=["POST"])
+def servo_off():
+    # Stop the servo motor
+    servo_motor.turn_off()
+    # Redirect to the main page
+    return "not spinning"
 
 @app.route('/temp_hum')
 def temp_hum_page():
