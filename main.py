@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Initialize PiDevices
 button = Button(23)
 buzzer = Buzzer(26)
-pir_sensor = PIRSensor(13)
+pir_sensor = PIRSensor(17)
 servo_motor = ServoMotor(18)
 dht11_sensor = Temp_Hum(4)
 
