@@ -38,9 +38,9 @@ class Buzzer(PiDevices):
         super().__init__(buzzer_pin)
         GPIO.setup(buzzer_pin, GPIO.OUT)
 
-    def sound_alarm(self):
+    def sound_alarm(self,time):
         GPIO.output(self.pin, GPIO.HIGH)
-        time.sleep(1)
+        time.sleep(time)  # Buzzer stays on for 5 seconds
         GPIO.output(self.pin, GPIO.LOW)
 
 class PIRSensor(PiDevices):

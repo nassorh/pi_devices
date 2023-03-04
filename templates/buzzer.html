@@ -6,6 +6,8 @@
 <body>
 	<h1>Buzzer Alarm</h1>
 	<form method="GET" action="/sound_buzzer">
+		<label for="duration">Duration (in seconds):</label>
+		<input type="number" id="duration" name="duration" min="1" max="60" value="5">
 		<button type="submit">Sound the Buzzer</button>
 	</form>
 </body>
