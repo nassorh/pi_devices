@@ -101,7 +101,7 @@ class Temp_Hum(PiDevices):
     def read_values_thread(self):
         sensor = Adafruit_DHT.DHT11
         while True:
-            humidity, temperature = Adafruit_DHT.read_retry(sensor, self.pin)
+            self.humidity, self.temperature = Adafruit_DHT.read_retry(sensor, self.pin)
             if humidity is not None and temperature is not None:
                 self.temperature = temperature
                 self.humidity = humidity
