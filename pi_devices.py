@@ -55,10 +55,8 @@ class PIRSensor(PiDevices):
     def detect_motion_thread(self):
         while True:
             if GPIO.input(self.pin):
-                print(True)
                 self.motion_detected = True
             else:
-                print(False)
                 self.motion_detected = False
             time.sleep(0.1)
 
