@@ -8,7 +8,7 @@ button = Button(23)
 buzzer = Buzzer(26)
 pir_sensor = PIRSensor(13)
 servo_motor = ServoMotor(18)
-dht11_sensor = DHT11Sensor(4)
+dht11_sensor = Temp_Hum(4)
 
 # Create routes for each feature
 @app.route('/')
