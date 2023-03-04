@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,jsonify
 from pi_devices import Button, Buzzer, PIRSensor, ServoMotor, Temp_Hum
 
 app = Flask(__name__)
