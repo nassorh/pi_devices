@@ -91,8 +91,6 @@ class ServoMotor(PiDevices):
                 for angle in range(361, -1, self.smoothness*-1):
                     self.spin_(angle)
                     time.sleep(self.speed)
-            else:
-                time.sleep(self.speed)
 
     def turn_on(self):
         self.is_turned_on = True
