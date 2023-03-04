@@ -30,8 +30,7 @@ def buzzer_page():
 
 @app.route('/sound_buzzer')
 def sound_buzzer():
-    duration = request.args.get('duration', default=5, type=int) # get the input value, default to 5 if not provided
-    buzzer.sound_alarm(duration) 
+    buzzer.sound_alarm(5) 
     return 'Buzzer sounded for {} seconds!'.format(duration)
 
 @app.route('/pir')
