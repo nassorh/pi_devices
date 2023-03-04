@@ -8,7 +8,7 @@ button = Button(23)
 buzzer = Buzzer(26)
 pir_sensor = PIRSensor(17)
 servo_motor = ServoMotor(18)
-dht11_sensor = Temp_Hum(4)
+temp_hum = Temp_Hum(13)
 
 # Create routes for each feature
 @app.route('/')
@@ -57,12 +57,11 @@ def toggle_servo():
 
 @app.route('/temp_hum')
 def temp_hum_page():
-    temperature, humidity = dht11_sensor.get_values()
-    return render_template('temp_hum.html', temperature=temperature, humidity=humidity)
+    return render_template('temp_hum.html')
 
 @app.route('/get_temp_hum')
 def get_live_temp_hum():
-    temperature, humidity = dht11_sensor.get_values()
+    temperature, humidity = temp_hum.get_values()
     print(temperature, humidity)
     return jsonify({'temperature': temperature, 'humidity': humidity})
 
