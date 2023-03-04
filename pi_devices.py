@@ -29,6 +29,7 @@ class Button(PiDevices):
 
     def check_button(self):
         self.flag = self.count % 2
+        print(self.flag)
         if self.flag == 1:
             return True
         return False
