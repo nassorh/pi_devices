@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Servo Motor</title>
+</head>
+<body>
+	<h1>Servo Motor</h1>
+	{% if servo_on %}
+		<p>Servo motor is on.</p>
+		<form action="/servo_off" method="POST">
+			<input type="submit" value="Turn Off">
+		</form>
+	{% else %}
+		<p>Servo motor is off.</p>
+		<form action="/servo_on" method="POST">
+			<input type="submit" value="Turn On">
+		</form>
+	{% endif %}
+	<a href="/">Back</a>
+</body>
+</html>
